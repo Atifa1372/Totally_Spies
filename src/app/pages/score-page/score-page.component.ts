@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import {EmojiComponentComponent} from "../../components/emoji-component/emoji-component.component";
-import {ScoreComponentComponent} from "../../components/score-component/score-component.component";
+import {EmojiComponent} from "../../components/emoji/emoji.component";
+import {ScoreComponent} from "../../components/score/score.component";
 
 @Component({
   selector: 'app-score-page',
   standalone: true,
   imports: [
-    EmojiComponentComponent,
-    ScoreComponentComponent
+    EmojiComponent,
+    ScoreComponent
   ],
   templateUrl: './score-page.component.html',
   styleUrl: './score-page.component.css'
