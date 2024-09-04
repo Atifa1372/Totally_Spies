@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [],
   templateUrl: './start-page.component.html',
-  styleUrl: './start-page.component.css'
+  styleUrl: './start-page.component.scss'
 })
 export class StartPageComponent implements OnInit{
   private router: Router = inject(Router);

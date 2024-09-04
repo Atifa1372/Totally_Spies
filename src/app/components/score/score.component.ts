@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './score.component.html',
-  styleUrl: './score.component.css'
+  styleUrl: './score.component.scss'
 })
 export class ScoreComponent {
 

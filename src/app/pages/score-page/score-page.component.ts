@@ -12,7 +12,7 @@ import {HeaderComponent} from "../../components/header/header.component";
     HeaderComponent
   ],
   templateUrl: './score-page.component.html',
-  styleUrl: './score-page.component.css'
+  styleUrl: './score-page.component.scss'
 })
 export class ScorePageComponent {
 

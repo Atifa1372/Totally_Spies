@@ -13,7 +13,7 @@ import {HeaderComponent} from "../../components/header/header.component";
     HeaderComponent
   ],
   templateUrl: './category-select-page.component.html',
-  styleUrl: './category-select-page.component.css'
+  styleUrl: './category-select-page.component.scss'
 })
 export class CategorySelectPageComponent implements OnInit {
   private category_service = inject(CategoryService);
