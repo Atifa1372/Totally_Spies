@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+
+  .content {
+    border-radius: 2rem 2rem 0 0;
+    padding: 1rem;
+    background: white;
+  }
+}

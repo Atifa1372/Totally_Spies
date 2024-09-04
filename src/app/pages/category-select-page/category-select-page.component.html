@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<div class="content">
+ <form [formGroup]="category_form">
+    <select formControlName="category">
+      @for (category of categories; track $index) {
+        <option [value]="category.id">{{category.name}}</option>
+      }
+    </select>
+  </form>
+  <button (click)="select_category()">Weiter</button>
+</div>
