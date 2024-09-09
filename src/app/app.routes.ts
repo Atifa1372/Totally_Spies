@@ -7,4 +7,5 @@ export const routes: Routes = [
   {path: '', component: StartPageComponent},
   {path: 'score', component: ScorePageComponent},
   {path: 'category-select', component: CategorySelectPageComponent},
+  {path: 'count-select/:category-id', component: CategorySelectPageComponent},
 ];

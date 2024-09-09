@@ -3,6 +3,7 @@ import {CategoryService} from "../../services/category.service";
 import {Category} from "../../interfaces/category.interface";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {HeaderComponent} from "../../components/header/header.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-category-select-page',
@@ -16,7 +17,8 @@ import {HeaderComponent} from "../../components/header/header.component";
   styleUrl: './category-select-page.component.scss'
 })
 export class CategorySelectPageComponent implements OnInit {
-  private category_service = inject(CategoryService);
+  private category_service: CategoryService = inject(CategoryService);
+  private router: Router = inject(Router);
 
   public categories: Category[] = [];
 
@@ -31,6 +33,6 @@ export class CategorySelectPageComponent implements OnInit {
   }
 
   select_category() {
-    console.log();
+    this.router.navigate(['count-select', this.category_form.get('category')?.value]).then();
   }
 }
