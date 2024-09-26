@@ -7,10 +7,10 @@ import { EmojiComponent } from './components/emoji/emoji.component';
 
 export const routes: Routes = [
   {path: '', component: StartPageComponent},
-  {path: 'category-select', component: CategorySelectPageComponent},
   {path: 'score', component: ScorePageComponent},
-  {path: 'count-select/:category-id', component: CategorySelectPageComponent},
+  {path: 'category-select', component: CategorySelectPageComponent},
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes), EmojiComponent],
   exports: [RouterModule]

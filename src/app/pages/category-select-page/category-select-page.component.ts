@@ -27,9 +27,15 @@ export class CategorySelectPageComponent implements OnInit {
   })
 
   ngOnInit() {
-    this.category_service.getCategories().subscribe(categories => {
+    this.categories = [
+      {id: 1, name: 'BfK-S'},
+      {id: 2, name: 'BfK-B'},
+      {id: 3, name: 'BfK-I'},
+      {id: 4, name: 'Wirtschaft'},
+    ];
+    /*this.category_service.getCategories().subscribe(categories => {
       this.categories = categories
-    })
+    })*/
   }
 
   select_category() {

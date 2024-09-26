@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<div class="content">
+  <p>Wie viele Fragen magst du lernen?</p>
+  <form [formGroup]="count_form">
+    <select formControlName="count">
+      @for (count of counts; track $index) {
+        <option [value]="count">{{count}}</option>
+      }
+    </select>
+  </form>
+  <button (click)="select_count()">Weiter</button>
+</div>

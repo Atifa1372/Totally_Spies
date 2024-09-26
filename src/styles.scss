@@ -10,5 +10,12 @@ body {
   --color-2: #315E9A;
   --color-3: #FFEC8C;
 
-  /*todo: .button-1*/
+  font-family: "Nunito", sans-serif;
+
+  button {
+    background: #003285;
+    color: white;
+    border-radius: 20px;
+    border: none;
+  }
 }

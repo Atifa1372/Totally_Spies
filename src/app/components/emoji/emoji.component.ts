@@ -5,7 +5,7 @@ import {HeaderComponent} from "../../components/header/header.component";
 @Component({
   selector: 'app-emoji-component',
   standalone: true,
-  imports: [CommonModule , 
+  imports: [CommonModule ,
     HeaderComponent
   ],
   templateUrl: './emoji.component.html',
@@ -38,7 +38,7 @@ export class EmojiComponent {
 
   // Methode, um zum Quiz zurückzukehren
   backToQuiz() {
-    
+
     console.log('Zurück zum Quiz'); }
 
 }

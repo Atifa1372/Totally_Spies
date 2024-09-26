@@ -1,7 +1,8 @@
 <app-header></app-header>
 
 <div class="content">
- <form [formGroup]="category_form">
+  <p>Was willst du heute lernen?</p>
+  <form [formGroup]="category_form">
     <select formControlName="category">
       @for (category of categories; track $index) {
         <option [value]="category.id">{{category.name}}</option>

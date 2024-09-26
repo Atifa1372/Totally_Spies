@@ -39,7 +39,7 @@ export class ScorePageComponent implements OnInit {
     }
   }
 
-  
+
   backToQuiz() {
     // Hier kannst du die Logik hinzufügen, um zum Quiz zurückzukehren.
     console.log('Zurück zum Quiz');
