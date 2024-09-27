@@ -4,6 +4,7 @@ import {inject} from "@angular/core";
 import {QuestionService} from "../services/question.service";
 import {Category} from "../interfaces/category.interface";
 import {CategoryService} from "../services/category.service";
+import {Router} from "@angular/router";
 
 type SchaffITStore = {
   questions: Question[],
@@ -31,9 +32,12 @@ export const SchaffITStore = signalStore(
   withMethods((store: any) => {
     const question_service = inject(QuestionService);
     const category_service = inject(CategoryService);
+    const router = inject(Router);
 
     return {
       load_questions_by_amount_and_categories() {
+        //if (store.selected_categories)
+
         /*let subscription = question_service.getQuestionsByAmountAndCategoryId(amount_of_questions, category_id).subscribe(questions => {
           patchState(store, {questions: questions});
           subscription.unsubscribe();
@@ -109,8 +113,8 @@ export const SchaffITStore = signalStore(
         patchState(store, {categories: categories});
       },
 
-      set_selected_category(selected_category_id: number) {
-        patchState(store, {selected_category_id: selected_category_id});
+      set_selected_category(selected_categories: number[]) {
+        patchState(store, {selected_categories: selected_categories});
       },
 
       set_selected_amount(selected_amount: number) {
