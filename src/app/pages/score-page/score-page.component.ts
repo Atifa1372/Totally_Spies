@@ -31,7 +31,7 @@ export class ScorePageComponent implements OnInit {
     if (this.score > 15) {
       this.message = 'Gut gemacht!';
     } else if (this.score <= 14 && this.score >= 6) {
-      this.message = 'Das kannst du besser.';
+      this.message = 'Das kannst du besser!';
     } else if (this.score < 6) {
       this.message = 'Was machst du hier?';
     }

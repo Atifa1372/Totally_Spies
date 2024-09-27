@@ -5,6 +5,10 @@
   .header {
     padding: 3rem 1rem 1rem 1rem;
 
+    &.white {
+      background: white;
+    }
+
     svg {
       width: 7.5rem;
       height: auto;

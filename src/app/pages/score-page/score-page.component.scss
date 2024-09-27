@@ -1,19 +1,24 @@
 .score-page {
+  display: grid;
+  gap: .8rem;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 5rem;
+  justify-content: center;
+  justify-items: center;
 }
 
 .logo {
   width: 100px;
-  margin-bottom: 20px;
 }
 
 .emoji {
   font-size: 70px;
-  margin-top: 5%;
 }
 
 img{
-  margin-top: 2%;
   size: 5cm;
+}
+
+button {
+  width: 250px;
 }
