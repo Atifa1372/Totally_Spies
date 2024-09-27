@@ -27,6 +27,7 @@ export class CountSelectPageComponent {
 
   select_count() {
     if (this.count_form.valid) {
+      this.schaffIT_store.set_selected_amount(this.count_form.get('count')?.value);
       this.load_questions();
       this.router.navigate(['question-page']).then();
     }

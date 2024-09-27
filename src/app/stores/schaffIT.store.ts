@@ -106,11 +106,15 @@ export const SchaffITStore = signalStore(
           {id: 3, name: 'BfK-I'},
           {id: 4, name: 'Wirtschaft'},
         ];
-        patchState(store, {categories: categories})
+        patchState(store, {categories: categories});
       },
 
       set_selected_category(selected_category_id: number) {
-        //todo
+        patchState(store, {selected_category_id: selected_category_id});
+      },
+
+      set_selected_amount(selected_amount: number) {
+        patchState(store, {selected_amount: selected_amount});
       }
 
     }
