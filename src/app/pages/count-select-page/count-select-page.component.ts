@@ -27,12 +27,8 @@ export class CountSelectPageComponent {
 
   select_count() {
     if (this.count_form.valid) {
-      this.schaffIT_store.set_selected_amount(this.count_form.get('count')?.value);
-      this.router.navigate(['question-page']).then(() => this.load_questions());
+      this.schaffIT_store.set_selected_amount_and_load_questions(this.count_form.get('count')?.value);
+      this.router.navigate(['question-page']).then();
     }
-  }
-
-  load_questions() {
-    this.schaffIT_store.load_questions();
   }
 }

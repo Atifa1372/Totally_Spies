@@ -126,8 +126,9 @@ export const SchaffITStore = signalStore(
         patchState(store, {selected_category_id: selected_category});
       },
 
-      set_selected_amount(selected_amount: number) {
+      set_selected_amount_and_load_questions(selected_amount: number) {
         patchState(store, {selected_amount_of_questions: selected_amount});
+        this.load_questions();
       },
 
       get_first_question() {
@@ -164,9 +165,6 @@ export const SchaffITStore = signalStore(
   withHooks({
     onInit(store: any) {
       store.load_categories();
-    },
-    onDestroy() {
-      //console.log('on destroy');
     }
   })
 );
