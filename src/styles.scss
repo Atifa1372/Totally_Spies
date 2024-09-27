@@ -12,10 +12,31 @@ body {
 
   font-family: "Nunito", sans-serif;
 
+  h1 {
+    font-size: 24px;
+    color: #315E9A;
+  }
+  h2 {
+    font-size: 24px;
+    color: #003285;
+  }
+  p {
+    font-size: 24px;
+    color: #315E9A;
+    margin-top: 3%;
+  }
+
   button {
-    background: #003285;
+    padding: 15px 25px;
+    background-color: #003285;
     color: white;
-    border-radius: 20px;
     border: none;
+    margin-top: 3%;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #003285;
   }
 }
