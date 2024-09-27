@@ -22,18 +22,17 @@ export class CountSelectPageComponent {
   public counts: number[] = [5, 10, 20, 30];
 
   public count_form: FormGroup = new FormGroup<any>({
-    count: new FormControl([], Validators.required)
+    count: new FormControl(null, Validators.required)
   })
 
   select_count() {
     if (this.count_form.valid) {
       this.schaffIT_store.set_selected_amount(this.count_form.get('count')?.value);
-      this.load_questions();
-      this.router.navigate(['question-page']).then();
+      this.router.navigate(['question-page']).then(() => this.load_questions());
     }
   }
 
   load_questions() {
-    this.schaffIT_store.load_questions_by_amount_and_categories();
+    this.schaffIT_store.load_questions();
   }
 }

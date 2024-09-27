@@ -1,0 +1,14 @@
+:host {
+  display: grid;
+  background: #315E9A;
+
+  .content {
+    border-radius: 2rem 2rem 0 0;
+    padding: 5rem 1rem;
+    background: white;
+
+    display: grid;
+    gap: 1rem;
+    justify-content: center;
+  }
+}

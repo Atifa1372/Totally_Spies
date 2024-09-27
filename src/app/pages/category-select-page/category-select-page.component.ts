@@ -20,7 +20,7 @@ export class CategorySelectPageComponent {
   private router: Router = inject(Router);
 
   public category_form: FormGroup = new FormGroup<any>({
-    category: new FormControl([], Validators.required)
+    category: new FormControl(null, Validators.required)
   })
 
   select_category() {
