@@ -1,39 +1,42 @@
 import {Question} from "../interfaces/question.interface";
-import {patchState, signalStore, withMethods, withState} from "@ngrx/signals";
+import {patchState, signalStore, withComputed, withHooks, withMethods, withState} from "@ngrx/signals";
 import {inject} from "@angular/core";
 import {QuestionService} from "../services/question.service";
-import {Answer} from "../interfaces/answer.interface";
 import {Category} from "../interfaces/category.interface";
+import {CategoryService} from "../services/category.service";
 
-type QuestionsState = {
+type SchaffITStore = {
   questions: Question[],
-  current_question: Question|null,
-  selected_answer: Answer|null,
+  categories: Category[],
   selected_categories: Category[],
-  selected_amount_of_questions: number|null,
+  selected_amount_of_questions: number,
+  amount_of_correct_answers: number,
+  amount_of_false_answers: number,
   isLoading: boolean
 }
-const initialState: QuestionsState = {
+const initialState: SchaffITStore = {
   questions: [] as Question[],
-  current_question: null,
-  selected_answer: null,
+  categories: [] as Category[],
   selected_categories: [] as Category[],
-  selected_amount_of_questions: null,
+  selected_amount_of_questions: 0,
+  amount_of_correct_answers: 0,
+  amount_of_false_answers: 0,
   isLoading: false,
 };
 
-export const QuestionStore = signalStore(
+export const SchaffITStore = signalStore(
   {providedIn: 'root'},
-
   withState(initialState),
 
   withMethods((store: any) => {
     const question_service = inject(QuestionService);
+    const category_service = inject(CategoryService);
 
     return {
-      loadQuestionsByAmountAndCategoryId(amount_of_questions: number, category_id: number) {
-        /*question_service.getQuestionsByAmountAndCategoryId(amount_of_questions, category_id).subscribe(questions => {
+      load_questions_by_amount_and_categories() {
+        /*let subscription = question_service.getQuestionsByAmountAndCategoryId(amount_of_questions, category_id).subscribe(questions => {
           patchState(store, {questions: questions});
+          subscription.unsubscribe();
         });*/
 
         let questions = [
@@ -88,10 +91,41 @@ export const QuestionStore = signalStore(
             }
           },
         ];
-
         patchState(store, {questions: questions});
+      },
+
+      load_categories() {
+       /* let subscription = category_service.getCategories().subscribe(categories => {
+          patchState(store, {categories: categories});
+          subscription.unsubscribe();
+        })*/
+
+        let categories = [
+          {id: 1, name: 'BfK-S'},
+          {id: 2, name: 'BfK-B'},
+          {id: 3, name: 'BfK-I'},
+          {id: 4, name: 'Wirtschaft'},
+        ];
+        patchState(store, {categories: categories})
+      },
+
+      set_selected_category(selected_category_id: number) {
+        //todo
       }
 
+    }
+  }),
+
+  withComputed(() => ({})
+    // computed
+  ),
+
+  withHooks({
+    onInit(store: any) {
+      store.load_categories();
+    },
+    onDestroy() {
+      //console.log('on destroy');
     }
   })
 );

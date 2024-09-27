@@ -4,7 +4,7 @@
   <p>Was willst du heute lernen?</p>
   <form [formGroup]="category_form">
     <select formControlName="category">
-      @for (category of categories; track $index) {
+      @for (category of schaffIT_store.categories(); track $index) {
         <option [value]="category.id">{{category.name}}</option>
       }
     </select>
