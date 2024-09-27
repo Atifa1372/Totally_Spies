@@ -4,6 +4,7 @@ import {HeaderComponent} from "../../components/header/header.component";
 import {Question} from "../../interfaces/question.interface";
 import {Router} from "@angular/router";
 import {NgForOf} from "@angular/common";
+import {stringify} from "ts-jest";
 
 @Component({
   selector: 'app-question-page',
@@ -22,11 +23,12 @@ export class QuestionPageComponent {
   public question: Question = this.schaffIT_store.get_first_question();
   public selected_answer: any = null;
 
-  button_clicked() {
-    $('button').on('click', function(){
-      $('button').removeClass('selected');
-      $(this).addClass('selected');
-    });
+  button_clicked(answer_id: number) {
+    const btn: any = document.getElementsByTagName("button");
+    btn.classList.remove('selected');
+
+    const clicked_btn: any = document.getElementById(stringify(answer_id));
+    clicked_btn.classList.add('selected');
   }
 
   select_answer() {

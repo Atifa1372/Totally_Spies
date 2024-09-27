@@ -13,7 +13,7 @@ type SchaffITStore = {
   selected_amount_of_questions: number,
   selected_answer_id: number|null,
   amount_of_correct_answers: number,
-  isLoading: boolean
+  all_answered: boolean
 }
 const initialState: SchaffITStore = {
   questions: [] as Question[],
@@ -22,7 +22,7 @@ const initialState: SchaffITStore = {
   selected_amount_of_questions: 0,
   selected_answer_id: null,
   amount_of_correct_answers: 0,
-  isLoading: false,
+  all_answered: false,
 };
 
 export const SchaffITStore = signalStore(
@@ -134,7 +134,7 @@ export const SchaffITStore = signalStore(
       get_first_question() {
         if (store.questions().length > 0) {
           return store.questions()[0];
-        } else if (store.amount_of_correct_answers()) {
+        } else if (store.all_answered()) {
           router.navigate(['score']);
         } else {
           router.navigate(['category-select']).then(() => confirm('Es muss erst eine Kategorie und die Anzahl der Fragen ausgewählt werden.'));
@@ -146,9 +146,13 @@ export const SchaffITStore = signalStore(
       },
 
       delete_first_question() {
-        const questions = [...store.questions];
+        const questions = store.questions();
         questions.splice(0, 1);
         patchState(store, {questions: questions})
+
+        if (questions.length === 0) {
+          patchState(store, {all_answered: true})
+        }
       },
 
       increment_amount_of_correct_answers() {

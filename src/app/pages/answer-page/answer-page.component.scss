@@ -12,28 +12,34 @@
     justify-content: center;
 
     .question {
-      padding: 1rem;
+      padding: 90vw;
       text-align: center;
     }
 
     .answers {
       display: grid;
       gap: .5rem;
+      justify-content: center;
 
-      .answer-button {
-        border-radius: 10px;
-        padding: 10px 25px;
-        background: #E6E6E6;
-        cursor: move; //todo
+      .answer {
+        display: grid;
+        justify-items: center;
 
-        &.true {
-          background: #ADEA98;
-        }
-        &.false {
-          background: #F86D70;
-        }
-        &:disabled {
-          cursor: move;
+        .answer-button {
+          border-radius: 10px;
+          padding: 25px 25px;
+          background: #E6E6E6;
+          width: 90vw;
+
+          &.true {
+            background: #ADEA98;
+          }
+          &.false {
+            background: #F86D70;
+          }
+          &:disabled {
+            cursor: default;
+          }
         }
       }
     }

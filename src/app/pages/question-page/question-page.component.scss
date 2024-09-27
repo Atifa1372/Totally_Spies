@@ -12,25 +12,32 @@
     justify-content: center;
 
     .question {
-      padding: 1rem;
+      width: 90vw;
       text-align: center;
     }
 
     .answers {
       display: grid;
       gap: .1rem;
+      justify-content: center;
 
-      .answer-button {
-        border-radius: 10px;
-        padding: 10px 25px;
-        background: #E6E6E6;
+      .answer {
+        display: grid;
+        justify-items: center;
 
-        &:hover {
-          background: #B9B9B9;
-        }
+        .answer-button {
+          border-radius: 10px;
+          padding: 25px 25px;
+          background: #E6E6E6;
+          width: 90vw;
 
-        &.selected{
-          background: #FFEC8C;
+          &:hover {
+            background: #B9B9B9;
+          }
+
+          &.selected {
+            background: #FFEC8C;
+          }
         }
       }
     }
