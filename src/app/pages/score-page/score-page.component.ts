@@ -1,16 +1,14 @@
 import { Component,OnInit } from '@angular/core';
-import {EmojiComponent} from "../../components/emoji/emoji.component";
-import {ScoreComponent} from "../../components/score/score.component";
 import {HeaderComponent} from "../../components/header/header.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-score-page',
   standalone: true,
-  imports: [
-    EmojiComponent,
-    ScoreComponent,
-    HeaderComponent
-  ],
+    imports: [
+        HeaderComponent,
+        NgIf
+    ],
   templateUrl: './score-page.component.html',
   styleUrl: './score-page.component.scss'
 })
@@ -44,12 +42,5 @@ export class ScorePageComponent implements OnInit {
     // Hier kannst du die Logik hinzufügen, um zum Quiz zurückzukehren.
     console.log('Zurück zum Quiz');
   }
-
-
-
-
-
-
-
 }
 

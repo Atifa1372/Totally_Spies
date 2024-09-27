@@ -1,3 +1,22 @@
 <app-header></app-header>
-<app-emoji-component></app-emoji-component>
-<app-score-component></app-score-component>
+
+<div class="score-page">
+
+  <div class="emoji" *ngIf="score >= 15">
+    <img src="/happy.jpg" alt="happy image">
+  </div>
+
+  <div class="emoji" *ngIf="score >= 6 && score < 15">
+    <img src="/sad.jpg" alt="sad image">
+  </div>
+
+  <div class="emoji" *ngIf="score < 6">
+    <img src="/suprise.jpg" alt="suprise image">
+  </div>
+
+  <h1>{{message}}</h1>
+
+  <p>Du hast {{score}} von 20 Fragen richtig beantwortet in {{time}} Minuten.</p>
+
+  <button (click)="backToQuiz()">Zurück zum Quiz</button>
+</div>
