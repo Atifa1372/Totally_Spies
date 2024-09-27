@@ -22,6 +22,13 @@ export class QuestionPageComponent {
   public question: Question = this.schaffIT_store.get_first_question();
   public selected_answer: any = null;
 
+  button_clicked() {
+    $('button').on('click', function(){
+      $('button').removeClass('selected');
+      $(this).addClass('selected');
+    });
+  }
+
   select_answer() {
     if (this.selected_answer) {
       this.schaffIT_store.set_selected_answer_id(this.selected_answer?.id);
