@@ -6,18 +6,18 @@ import {Answer} from "../interfaces/answer.interface";
 import {Category} from "../interfaces/category.interface";
 
 type QuestionsState = {
-  questions: Question[]|null,
+  questions: Question[],
   current_question: Question|null,
   selected_answer: Answer|null,
-  selected_categories: Category[]|null,
+  selected_categories: Category[],
   selected_amount_of_questions: number|null,
   isLoading: boolean
 }
 const initialState: QuestionsState = {
-  questions: null,
+  questions: [] as Question[],
   current_question: null,
   selected_answer: null,
-  selected_categories: null,
+  selected_categories: [] as Category[],
   selected_amount_of_questions: null,
   isLoading: false,
 };
@@ -27,12 +27,10 @@ export const QuestionStore = signalStore(
 
   withState(initialState),
 
-  withMethods(
-    (
-      store,
-      question_service = inject(QuestionService)
-    ) => ({
+  withMethods((store: any) => {
+    const question_service = inject(QuestionService);
 
+    return {
       loadQuestionsByAmountAndCategoryId(amount_of_questions: number, category_id: number) {
         /*question_service.getQuestionsByAmountAndCategoryId(amount_of_questions, category_id).subscribe(questions => {
           patchState(store, {questions: questions});
@@ -94,6 +92,6 @@ export const QuestionStore = signalStore(
         patchState(store, {questions: questions});
       }
 
-    })
-  )
+    }
+  })
 );

@@ -39,6 +39,8 @@ export class CategorySelectPageComponent implements OnInit {
   }
 
   select_category() {
-    this.router.navigate(['count-select', this.category_form.get('category')?.value]).then();
+    if (this.category_form.valid) {
+      this.router.navigate(['count-select', this.category_form.get('category')?.value]).then();
+    }
   }
 }

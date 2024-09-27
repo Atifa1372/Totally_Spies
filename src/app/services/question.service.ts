@@ -1,8 +1,11 @@
 import {HttpClient} from "@angular/common/http";
-import {inject} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {environment} from "../../environment/environment";
 import {Observable} from "rxjs";
 
+@Injectable({
+  providedIn: "root"
+})
 export class QuestionService {
   private http: HttpClient = inject(HttpClient);
   private api_url: string = environment.api_url;
