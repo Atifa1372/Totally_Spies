@@ -1,1 +1,14 @@
 <app-header></app-header>
+<div class="content">
+  <div class="question">
+    {{question.text}}
+  </div>
+  <div class="answers">
+    <div class="answer" *ngFor="let answer of question.answers">
+      <button class="answer-button" (click)="selected_answer=answer">{{answer.text}}</button>
+    </div>
+  </div>
+  <div class="button">
+    <button (click)="select_answer()">Weiter</button>
+  </div>
+</div>

@@ -10,5 +10,29 @@
     display: grid;
     gap: 1rem;
     justify-content: center;
+
+    .question {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .answers {
+      display: grid;
+      gap: .5rem;
+
+      .answer-button {
+        border-radius: 10px;
+        padding: 10px 25px;
+        background: #E6E6E6;
+
+        &:hover {
+          background: #B9B9B9;
+        }
+
+        &:active {
+          background: #FFEC8C;
+        }
+      }
+    }
   }
 }
