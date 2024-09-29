@@ -4,7 +4,6 @@ import {HeaderComponent} from "../../components/header/header.component";
 import {Question} from "../../interfaces/question.interface";
 import {Router} from "@angular/router";
 import {NgForOf} from "@angular/common";
-import {stringify} from "ts-jest";
 
 @Component({
   selector: 'app-question-page',
@@ -27,7 +26,7 @@ export class QuestionPageComponent {
     const btn: any = document.getElementsByTagName("button");
     btn.classList.remove('selected');
 
-    const clicked_btn: any = document.getElementById(stringify(answer_id));
+    const clicked_btn: any = document.getElementById(answer_id.toString());
     clicked_btn.classList.add('selected');
   }
 
