@@ -3,22 +3,24 @@
   background: #315E9A;
 
   .content {
+    display: grid;
+    gap: 1.5rem;
+    justify-content: center;
+    justify-items: center;
+
     border-radius: 2rem 2rem 0 0;
-    padding: 5rem 1rem;
+    padding: 2rem 1rem;
     background: white;
 
-    display: grid;
-    gap: 1rem;
-    justify-content: center;
-
     .question {
-      padding: 90vw;
+      padding: 0 2rem;
+      width: 100%;
       text-align: center;
     }
 
     .answers {
       display: grid;
-      gap: .5rem;
+      gap: 1rem;
       justify-content: center;
 
       .answer {
@@ -27,9 +29,9 @@
 
         .answer-button {
           border-radius: 10px;
-          padding: 25px 25px;
+          padding: 1rem 1rem;
           background: #E6E6E6;
-          width: 90vw;
+          width: 100%;
 
           &.true {
             background: #ADEA98;

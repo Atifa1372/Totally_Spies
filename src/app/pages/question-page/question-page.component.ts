@@ -22,13 +22,13 @@ export class QuestionPageComponent {
   public question: Question = this.schaffIT_store.get_first_question();
   public selected_answer: any = null;
 
-  button_clicked(answer_id: number) {
+  /*button_clicked(answer_id: number) {
     const btn: any = document.getElementsByTagName("button");
     btn.classList.remove('selected');
 
     const clicked_btn: any = document.getElementById(answer_id.toString());
     clicked_btn.classList.add('selected');
-  }
+  }*/
 
   select_answer() {
     if (this.selected_answer) {
