@@ -13,8 +13,7 @@
     background: white;
 
     .question {
-      padding: 0 2rem;
-      width: 100%;
+      width: 80vw;
       text-align: center;
     }
 
@@ -29,9 +28,10 @@
 
         .answer-button {
           border-radius: 10px;
-          padding: 1rem 1rem;
+          padding: 1rem;
           background: #E6E6E6;
           width: 100%;
+          text-align: left;
 
           &.true {
             background: #ADEA98;

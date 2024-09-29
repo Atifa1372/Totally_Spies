@@ -55,7 +55,7 @@ export const SchaffITStore = signalStore(
         let questions = [
           {
             id: 1,
-            text: 'Die Claudianer speichern ihre Daten in einer Wolke mit vier Server- Computern. Das Bild zeigt alle Datenwege zwischen diesen Servern. STORE-1 und STORE-2 dienen der Datensicherheit. PORT-1 und PORT-2 dienen dem Server-Zugang. Die Zugangsserver speichern keine Daten.\n' + '\n' + 'Welche Aussage ist falsch?',
+            text: 'Das Bild zeigt alle Datenwege zwischen diesen Servern. STORE-1 und STORE-2 dienen der Datensicherheit. PORT-1 und PORT-2 dienen dem Server-Zugang. Die Zugangsserver speichern keine Daten.\n' + '\n' + 'Welche Aussage ist falsch?',
             answers: [
               {
                 id: 1,
