@@ -26,7 +26,7 @@ export class CountSelectPageComponent {
 
   public count_form: FormGroup = new FormGroup<any>({
     count: new FormControl(null, Validators.required)
-    count: new FormControl(null, Validators.required)
+    
   })
 
   select_count() {
@@ -39,6 +39,6 @@ export class CountSelectPageComponent {
  
   
   load_questions() {
-    this.schaffIT_store.load_questions_by_amount_and_categories();
+    //this.schaffIT_store.load_questions_by_amount_and_categories();
   }
 }
