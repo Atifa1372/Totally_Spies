@@ -28,7 +28,6 @@ export class CategorySelectPageComponent {
   });
 
 
-  // This method will handle the subject selection
   selectSubject(subject: string) {
     this.selectedSubject = subject; // Store the selected subject
   }

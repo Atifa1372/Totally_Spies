@@ -1,11 +1,10 @@
 <app-header></app-header>
 
-  
-<h2>Was willst du heute lernen?</h2>
+<div class="content">
+  <p>Was willst du heute lernen?</p>
+
   <div class="subjects">
-
     
-
     <div class="subject" (click)="selectSubject('BfK-S')" [class.selected]="selectedSubject === 'BfK-S'">
       <img src="/bfkS.png" alt="BfK-S">
       <span>BfK-S</span>
@@ -28,11 +27,16 @@
       <span>GK</span>
     </div>
     <!--wir haben kein Deutsch,-->
-    <div class="subject" (click)="selectSubject('Deutsch')" [class.selected]="selectedSubject === 'Deutsch'">
+    <div class="subject" (click)="selectSubject('D')" [class.selected]="selectedSubject === 'Deutsch'">
       <span>Deutsch</span>
     </div>
   </div>
 
-  <div>  <button [disabled]="!category_form.valid || !selectedSubject" (click)="select_category()">Weiter</button></div>
+  <button (click)="select_category()">Weiter</button>
+
+
+</div>
+
+  
   
 
