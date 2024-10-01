@@ -9,20 +9,20 @@ import {Router} from "@angular/router";
 type SchaffITStore = {
   questions: Question[],
   categories: Category[],
-  selected_categories: Category[],
+  selected_category_id: number|null,
   selected_amount_of_questions: number,
+  selected_answer_id: number|null,
   amount_of_correct_answers: number,
-  amount_of_false_answers: number,
-  isLoading: boolean
+  all_answered: boolean
 }
 const initialState: SchaffITStore = {
   questions: [] as Question[],
   categories: [] as Category[],
-  selected_categories: [] as Category[],
+  selected_category_id: null,
   selected_amount_of_questions: 0,
+  selected_answer_id: null,
   amount_of_correct_answers: 0,
-  amount_of_false_answers: 0,
-  isLoading: false,
+  all_answered: false,
 };
 
 export const SchaffITStore = signalStore(
@@ -35,18 +35,27 @@ export const SchaffITStore = signalStore(
     const router = inject(Router);
 
     return {
-      load_questions_by_amount_and_categories() {
-        //if (store.selected_categories)
-
-        /*let subscription = question_service.getQuestionsByAmountAndCategoryId(amount_of_questions, category_id).subscribe(questions => {
-          patchState(store, {questions: questions});
-          subscription.unsubscribe();
-        });*/
+      load_questions() {
+        /*if (store.selected_category_id() && store.selected_amount_of_questions() > 0) {
+          if (store.selected_category_id() === 0) {
+            let subscription = question_service.getQuestionsByAmount(store.selected_amount_of_questions()).subscribe(questions => {
+              patchState(store, {questions: questions});
+              subscription.unsubscribe();
+            });
+          } else {
+            let subscription = question_service.getQuestionsByAmountAndCategoryId(store.selected_amount_of_questions(), store.selected_category_id()).subscribe(questions => {
+              patchState(store, {questions: questions});
+              subscription.unsubscribe();
+            });
+          }
+        } else {
+          router.navigate(['category-select']).then(() => confirm('Es muss erst eine Kategorie und die Anzahl der Fragen ausgewählt werden.'))
+        }*/
 
         let questions = [
           {
             id: 1,
-            text: 'Die Claudianer speichern ihre Daten in einer Wolke mit vier Server- Computern. Das Bild zeigt alle Datenwege zwischen diesen Servern. STORE-1 und STORE-2 dienen der Datensicherheit. PORT-1 und PORT-2 dienen dem Server-Zugang. Die Zugangsserver speichern keine Daten.\n' + '\n' + 'Welche Aussage ist falsch?',
+            text: 'Das Bild zeigt alle Datenwege zwischen diesen Servern. STORE-1 und STORE-2 dienen der Datensicherheit. PORT-1 und PORT-2 dienen dem Server-Zugang. Die Zugangsserver speichern keine Daten.\n' + '\n' + 'Welche Aussage ist falsch?',
             answers: [
               {
                 id: 1,
@@ -113,14 +122,43 @@ export const SchaffITStore = signalStore(
         patchState(store, {categories: categories});
       },
 
-      set_selected_category(selected_categories: number[]) {
-        patchState(store, {selected_categories: selected_categories});
+      set_selected_category(selected_category: number) {
+        patchState(store, {selected_category_id: selected_category});
       },
 
-      set_selected_amount(selected_amount: number) {
-        patchState(store, {selected_amount: selected_amount});
-      }
+      set_selected_amount_and_load_questions(selected_amount: number) {
+        patchState(store, {selected_amount_of_questions: selected_amount});
+        this.load_questions();
+      },
 
+      get_first_question() {
+        if (store.questions().length > 0) {
+          return store.questions()[0];
+        } else if (store.all_answered()) {
+          router.navigate(['score']);
+        } else {
+          router.navigate(['category-select']).then(() => confirm('Es muss erst eine Kategorie und die Anzahl der Fragen ausgewählt werden.'));
+        }
+      },
+
+      set_selected_answer_id(answer_id: number) {
+        patchState(store, {selected_answer_id: answer_id})
+      },
+
+      delete_first_question() {
+        const questions = store.questions();
+        questions.splice(0, 1);
+        patchState(store, {questions: questions})
+
+        if (questions.length === 0) {
+          patchState(store, {all_answered: true})
+        }
+      },
+
+      increment_amount_of_correct_answers() {
+        let amount = store.amount_of_correct_answers()+1;
+        patchState(store, {amount_of_correct_answers: amount});
+      }
     }
   }),
 
@@ -131,9 +169,6 @@ export const SchaffITStore = signalStore(
   withHooks({
     onInit(store: any) {
       store.load_categories();
-    },
-    onDestroy() {
-      //console.log('on destroy');
     }
   })
 );

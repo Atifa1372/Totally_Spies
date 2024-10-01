@@ -26,10 +26,12 @@ export class CountSelectPageComponent {
 
   public count_form: FormGroup = new FormGroup<any>({
     count: new FormControl(null, Validators.required)
+    count: new FormControl(null, Validators.required)
   })
 
   select_count() {
     if (this.count_form.valid) {
+      this.schaffIT_store.set_selected_amount_and_load_questions(this.count_form.get('count')?.value);
       //this.schaffIT_store.set_selected_amount_and_load_questions(this.count_form.get('count')?.value);
       this.router.navigate(['question-page']).then();
     }

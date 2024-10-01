@@ -37,8 +37,6 @@ export class CategorySelectPageComponent {
     if (this.category_form.valid) {
       this.schaffIT_store.set_selected_category(this.category_form.get('category')?.value);
       this.router.navigate(['count-select']).then();
-    } 
+    }
   }
-
-
 }

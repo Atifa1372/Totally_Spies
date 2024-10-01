@@ -2,21 +2,21 @@
 
 <div class="score-page">
 
-  <div class="emoji" *ngIf="score >= 15">
+  <div class="emoji" *ngIf="emoji == 'happy'">
     <img src="/happy.jpg" alt="happy image">
   </div>
 
-  <div class="emoji" *ngIf="score >= 6 && score < 15">
+  <div class="emoji" *ngIf="emoji == 'sad'">
     <img src="/sad.jpg" alt="sad image">
   </div>
 
-  <div class="emoji" *ngIf="score < 6">
+  <div class="emoji" *ngIf="emoji == 'surprise'">
     <img src="/suprise.jpg" alt="suprise image">
   </div>
 
   <h1>{{message}}</h1>
 
-  <p>Du hast {{score}} von 20 Fragen richtig beantwortet in {{time}} Minuten.</p>
+  <p>Du hast {{score}} von {{amount_of_questions}} Fragen richtig beantwortet.</p> <!-- in {{time}} Minuten. -->
 
-  <button (click)="backToQuiz()">Zurück zum Quiz</button>
+  <button (click)="backToQuiz()">Neues Spiel</button>
 </div>
