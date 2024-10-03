@@ -2,12 +2,41 @@
 
 <div class="content">
   <p>Was willst du heute lernen?</p>
-  <form [formGroup]="category_form">
-    <select formControlName="category">
-      @for (category of categories; track $index) {
-        <option [value]="category.id">{{category.name}}</option>
-      }
-    </select>
-  </form>
+
+  <div class="subjects">
+    
+    <div class="subject" (click)="selectSubject('BfK-S')" [class.selected]="selectedSubject === 'BfK-S'">
+      <img src="/bfkS.png" alt="BfK-S">
+      <span>BfK-S</span>
+    </div>
+    <div class="subject" (click)="selectSubject('BfK-I')" [class.selected]="selectedSubject === 'BfK-I'">
+      <img src="/bfkI.png" alt="BfK-I">
+      <span>BfK-I</span>
+    </div>
+    <div class="subject" (click)="selectSubject('BfK-B')" [class.selected]="selectedSubject === 'BfK-B'">
+      <img src="/bfkB.png" alt="BfK-B">
+      <span>BfK-B</span>
+    </div>
+    <div class="subject" (click)="selectSubject('WI')" [class.selected]="selectedSubject === 'WI'">
+      <img src="/wi.png" alt="wi">
+      <span>WI</span>
+    </div>
+   
+    <div class="subject" (click)="selectSubject('GK')" [class.selected]="selectedSubject === 'GK'">
+      <img src="/gk.png" alt="GK">
+      <span>GK</span>
+    </div>
+    <!--wir haben kein Deutsch,-->
+    <div class="subject" (click)="selectSubject('D')" [class.selected]="selectedSubject === 'Deutsch'">
+      <span>Deutsch</span>
+    </div>
+  </div>
+
   <button (click)="select_category()">Weiter</button>
+
+
 </div>
+
+  
+  
+

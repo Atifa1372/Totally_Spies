@@ -2,12 +2,33 @@
 
 <div class="content">
   <p>Wie viele Fragen magst du lernen?</p>
-  <form [formGroup]="count_form">
-    <select formControlName="count">
-      @for (count of counts; track $index) {
-        <option [value]="count">{{count}}</option>
-      }
-    </select>
-  </form>
-  <button (click)="select_count()">Weiter</button>
+
+  <div class="questions">
+    <div class="question-option" 
+        (click)="select_count()">
+      <span>10</span><br />
+      <small>Questions</small>
+    </div>
+
+    <div class="question-option" 
+        (click)="select_count()">
+      <span>15</span><br />
+      <small>Questions</small>
+    </div>
+
+    <div class="question-option" 
+        (click)="select_count()">
+      <span>20</span><br />
+      <small>Questions</small>
+    </div>
+
+    <div class="question-option" 
+        (click)="select_count()">
+      <span>30</span><br />
+      <small>Questions</small>
+    </div>
+    
+  </div>
+
+  <button (click)="select_count()">Start</button>
 </div>

@@ -1,3 +1,22 @@
-<app-header></app-header>
-<app-emoji-component></app-emoji-component>
-<app-score-component></app-score-component>
+<app-header [background_white]="true"></app-header>
+
+<div class="score-page">
+
+  <div class="emoji" *ngIf="emoji == 'happy'">
+    <img src="/happy.jpg" alt="happy image">
+  </div>
+
+  <div class="emoji" *ngIf="emoji == 'sad'">
+    <img src="/sad.jpg" alt="sad image">
+  </div>
+
+  <div class="emoji" *ngIf="emoji == 'surprise'">
+    <img src="/suprise.jpg" alt="suprise image">
+  </div>
+
+  <h1>{{message}}</h1>
+
+  <p>Du hast {{score}} von {{amount_of_questions}} Fragen richtig beantwortet.</p> <!-- in {{time}} Minuten. -->
+
+  <button (click)="backToQuiz()">Neues Spiel</button>
+</div>

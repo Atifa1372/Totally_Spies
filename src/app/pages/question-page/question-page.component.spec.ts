@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmojiComponent } from './emoji.component';
+import { QuestionPageComponent } from './question-page.component';
 
-describe('EmojiComponentComponent', () => {
-  let component: EmojiComponent;
-  let fixture: ComponentFixture<EmojiComponent>;
+describe('QuestionPageComponent', () => {
+  let component: QuestionPageComponent;
+  let fixture: ComponentFixture<QuestionPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmojiComponent]
+      imports: [QuestionPageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmojiComponent);
+    fixture = TestBed.createComponent(QuestionPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
