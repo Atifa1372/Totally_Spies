@@ -9,7 +9,7 @@
     justify-items: center;
 
     border-radius: 2rem 2rem 0 0;
-    padding: 2rem 1rem;
+    padding: 1rem;
     background: white;
 
     .time-and-count {
@@ -17,11 +17,11 @@
       grid-auto-flow: column;
       justify-content: space-between;
       align-items: center;
-      width: 80vw;
+      width: 90vw;
     }
 
     .question {
-      width: 75vw;
+      width: 80vw;
       text-align: center;
     }
 
