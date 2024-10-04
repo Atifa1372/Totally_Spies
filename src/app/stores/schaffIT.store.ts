@@ -12,6 +12,7 @@ type SchaffITStore = {
   selected_category_id: number|null,
   selected_amount_of_questions: number,
   selected_answer_id: number|null,
+  question_count: number,
   amount_of_correct_answers: number,
   all_answered: boolean
 }
@@ -21,6 +22,7 @@ const initialState: SchaffITStore = {
   selected_category_id: null,
   selected_amount_of_questions: 0,
   selected_answer_id: null,
+  question_count: 1,
   amount_of_correct_answers: 0,
   all_answered: false,
 };
@@ -54,53 +56,53 @@ export const SchaffITStore = signalStore(
 
         let questions = [
           {
-            id: 1,
-            text: 'Das Bild zeigt alle Datenwege zwischen diesen Servern. STORE-1 und STORE-2 dienen der Datensicherheit. PORT-1 und PORT-2 dienen dem Server-Zugang. Die Zugangsserver speichern keine Daten.\n' + '\n' + 'Welche Aussage ist falsch?',
-            answers: [
+            Id: 1,
+            Text: 'Das Bild zeigt alle Datenwege zwischen diesen Servern. STORE-1 und STORE-2 dienen der Datensicherheit. PORT-1 und PORT-2 dienen dem Server-Zugang. Die Zugangsserver speichern keine Daten.\n' + '\n' + 'Welche Aussage ist falsch?',
+            Answers: [
               {
-                id: 1,
-                text: 'Falls PORT-1 und PORT-2 zerstört werden, sind alle Daten der Claudianer vernichtet.',
-                is_true: true
+                Id: 1,
+                Text: 'Falls PORT-1 und PORT-2 zerstört werden, sind alle Daten der Claudianer vernichtet.',
+                IsTrue: true
               },
               {
-                id: 2,
-                text: 'Falls PORT-1 und PORT-2 zerstört werden, sind alle Daten der Claudianer unzugänglich.',
-                is_true: false
+                Id: 2,
+                Text: 'Falls PORT-1 und PORT-2 zerstört werden, sind alle Daten der Claudianer unzugänglich.',
+                IsTrue: false
               },
               {
-                id: 3,
-                text: 'Falls STORE-1 und STORE-2 zerstört werden, sind alle Daten der Claudianer vernichtet.',
-                is_true: false
+                Id: 3,
+                Text: 'Falls STORE-1 und STORE-2 zerstört werden, sind alle Daten der Claudianer vernichtet.',
+                IsTrue: false
               }
             ],
-            category: {
-              id: 1,
-              name: 'Netzwerk'
+            Category: {
+              Id: 1,
+              Name: 'Netzwerk'
             }
           },
           {
-            id: 2,
-            text: 'Ein Handwerker steht in einem Baumarkt vor einem Regal mit Schrauben. Er hat die Aufgabe, eine Schraube mit einer vorgegebenen Länge auszuwählen. Glücklicherweise sind die Schrauben im Regal von links nach rechts der Länge nach sortiert. Was ist die Lösung?',
-            answers: [
+            Id: 2,
+            Text: 'Ein Handwerker steht in einem Baumarkt vor einem Regal mit Schrauben. Er hat die Aufgabe, eine Schraube mit einer vorgegebenen Länge auszuwählen. Glücklicherweise sind die Schrauben im Regal von links nach rechts der Länge nach sortiert. Was ist die Lösung?',
+            Answers: [
               {
-                id: 1,
-                text: 'f(n) = log2 (n) + 1',
-                is_true: false
+                Id: 1,
+                Text: 'f(n) = log2 (n) + 1',
+                IsTrue: false
               },
               {
-                id: 2,
-                text: 'f(n) = 2n² + 1',
-                is_true: false
+                Id: 2,
+                Text: 'f(n) = 2n² + 1',
+                IsTrue: false
               },
               {
-                id: 3,
-                text: 'f(n) = √n + 1',
-                is_true: true
+                Id: 3,
+                Text: 'f(n) = √n + 1',
+                IsTrue: true
               }
             ],
-            category: {
-              id: 1,
-              name: 'Netzwerk'
+            Category: {
+              Id: 1,
+              Name: 'Netzwerk'
             }
           },
         ];
@@ -114,10 +116,10 @@ export const SchaffITStore = signalStore(
         })*/
 
         let categories = [
-          {id: 1, name: 'BfK-S'},
-          {id: 2, name: 'BfK-B'},
-          {id: 3, name: 'BfK-I'},
-          {id: 4, name: 'Wirtschaft'},
+          {Id: 1, Name: 'BfK-S', PicturePath: '/bfkS.png'},
+          {Id: 2, Name: 'BfK-B', PicturePath: '/bfkB.png'},
+          {Id: 3, Name: 'BfK-I', PicturePath: '/bfkI.png'},
+          {Id: 4, Name: 'Wirtschaft', PicturePath: '/wi.png'},
         ];
         patchState(store, {categories: categories});
       },
@@ -131,7 +133,7 @@ export const SchaffITStore = signalStore(
         this.load_questions();
       },
 
-      get_first_question() {
+      get_first_question_of_array() {
         if (store.questions().length > 0) {
           return store.questions()[0];
         } else if (store.all_answered()) {
@@ -145,19 +147,32 @@ export const SchaffITStore = signalStore(
         patchState(store, {selected_answer_id: answer_id})
       },
 
-      delete_first_question() {
+      delete_first_question_of_array() {
         const questions = store.questions();
         questions.splice(0, 1);
         patchState(store, {questions: questions})
+
+        this.increment_question_count();
 
         if (questions.length === 0) {
           patchState(store, {all_answered: true})
         }
       },
 
+      increment_question_count() {
+        const count = store.question_count()
+        patchState(store, {question_count: count+1});
+      },
+
       increment_amount_of_correct_answers() {
         let amount = store.amount_of_correct_answers()+1;
         patchState(store, {amount_of_correct_answers: amount});
+      },
+
+      reset_store() {
+        const categories = store.categories();
+        patchState(store, initialState);
+        patchState(store, {categories: categories})
       }
     }
   }),

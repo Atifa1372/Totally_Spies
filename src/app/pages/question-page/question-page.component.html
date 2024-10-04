@@ -1,12 +1,20 @@
 <app-header></app-header>
+
 <div class="content">
-  <div class="question">
-    {{question.text}}
+  <div class="time-and-count">
+    <h2>Frage {{schaffIT_store.question_count()}}</h2>
+    <p>00:07</p>
   </div>
+
+  <div class="question">
+    {{question.Text}}
+  </div>
+
   <div class="answers">
-    <div class="answer" *ngFor="let answer of question.answers">
-      <button class="answer-button" id="{{answer.id}}" (click)="selected_answer = answer">{{answer.text}}</button>
+    <div class="answer" *ngFor="let answer of question.Answers">
+      <button class="answer-button" id="{{answer.Id}}" (click)="select_answer(answer)" [class.selected]="selected_answer == answer">{{answer.Text}}</button>
     </div>
   </div>
-  <button class="submit-button" (click)="select_answer()">Weiter</button>
+
+  <button class="submit-button" (click)="submit()">Absenden</button>
 </div>

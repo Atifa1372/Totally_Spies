@@ -47,6 +47,7 @@ export class ScorePageComponent implements OnInit {
 
 
   backToQuiz() {
+    this.schaffIT_store.reset_store();
     this.router.navigate(['category-select']).then();
   }
 }

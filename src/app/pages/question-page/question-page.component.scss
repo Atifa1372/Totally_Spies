@@ -12,8 +12,16 @@
     padding: 2rem 1rem;
     background: white;
 
-    .question {
+    .time-and-count {
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: space-between;
+      align-items: center;
       width: 80vw;
+    }
+
+    .question {
+      width: 75vw;
       text-align: center;
     }
 
@@ -27,21 +35,18 @@
         justify-items: center;
 
         .answer-button {
-          border-radius: 10px;
+          border-radius: .5rem;
           padding: 1rem;
           background: #E6E6E6;
-          width: 100%;
+          color: var(--color-2);
           text-align: left;
+          transition: background-color 0.3s ease;
 
-          &:hover {
-            background: #B9B9B9;
+          &.selected {
+            background-color: #FFEC8C;
           }
         }
       }
-    }
-
-    button {
-      min-width: 100%;
     }
   }
 }

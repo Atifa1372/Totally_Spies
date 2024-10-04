@@ -4,6 +4,7 @@ import {HeaderComponent} from "../../components/header/header.component";
 import {Question} from "../../interfaces/question.interface";
 import {Router} from "@angular/router";
 import {NgForOf} from "@angular/common";
+import {Answer} from "../../interfaces/answer.interface";
 
 @Component({
   selector: 'app-question-page',
@@ -16,24 +17,20 @@ import {NgForOf} from "@angular/common";
   styleUrl: './question-page.component.scss'
 })
 export class QuestionPageComponent {
-  private schaffIT_store = inject(SchaffITStore);
   private router: Router = inject(Router);
+  public schaffIT_store = inject(SchaffITStore);
 
-  public question: Question = this.schaffIT_store.get_first_question();
+  public question: Question = this.schaffIT_store.get_first_question_of_array();
   public selected_answer: any = null;
 
-  /*button_clicked(answer_id: number) {
-    const btn: any = document.getElementsByTagName("button");
-    btn.classList.remove('selected');
+  select_answer(answer: Answer) {
+    this.selected_answer = answer;
+    this.schaffIT_store.set_selected_answer_id(answer.Id);
+  }
 
-    const clicked_btn: any = document.getElementById(answer_id.toString());
-    clicked_btn.classList.add('selected');
-  }*/
-
-  select_answer() {
+  submit() {
     if (this.selected_answer) {
-      this.schaffIT_store.set_selected_answer_id(this.selected_answer?.id);
-      if (this.selected_answer?.is_true) {
+      if (this.selected_answer.IsTrue) {
         this.schaffIT_store.increment_amount_of_correct_answers();
       }
       this.router.navigate(['answer-page']).then();

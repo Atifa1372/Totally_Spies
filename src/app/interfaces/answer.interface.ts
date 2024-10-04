@@ -1,5 +1,5 @@
 export interface Answer {
-  id: number,
-  text: string,
-  is_true: boolean
+  Id: number,
+  Text: string,
+  IsTrue: boolean
 }
