@@ -44,7 +44,7 @@ export const SchaffITStore = signalStore(
 
     return {
       load_questions() {
-        if (store.selected_category_id() && store.selected_amount_of_questions() > 0) {
+        if ((store.selected_category_id() || (store.selected_category_id() === 0) ) && store.selected_amount_of_questions() > 0) {
           if (store.selected_category_id() === 0) {
             let subscription = question_service.getQuestionsByAmount(store.selected_amount_of_questions()).subscribe(questions => {
               patchState(store, {questions: questions});
@@ -109,8 +109,10 @@ export const SchaffITStore = signalStore(
       },
 
       increment_amount_of_correct_answers() {
-        let amount = store.amount_of_correct_answers()+1;
+        const amount = store.amount_of_correct_answers()+1;
         patchState(store, {amount_of_correct_answers: amount});
+        console.log(amount);
+        console.log(store.amount_of_correct_answers());
       },
 
       start_timer() {

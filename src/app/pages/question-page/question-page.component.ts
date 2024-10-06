@@ -35,7 +35,7 @@ export class QuestionPageComponent implements OnInit, OnDestroy {
 
   submit() {
     if (this.selected_answer) {
-      if (this.selected_answer.IsTrue) {
+      if (this.selected_answer.isTrue) {
         this.schaffIT_store.increment_amount_of_correct_answers();
       }
       this.router.navigate(['answer-page']).then();

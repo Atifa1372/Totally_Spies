@@ -18,7 +18,7 @@ export class QuestionService {
 
   getQuestionsByAmount(amount_of_questions: number): Observable<any> {
     return this.http.get(
-      `${this.api_url}/api/shaffIT/questions/random/all?count=${amount_of_questions}`
+      `${this.api_url}/api/ShaffIT/questions/random/all?count=${amount_of_questions}`
     )
   }
 }
