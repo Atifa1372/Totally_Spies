@@ -9,14 +9,15 @@
     justify-content: stretch;
 
     .subject {
+      display: grid;
+      gap: .1rem;
       height: 5rem;
       background-color: #f0f0f0;
       border-radius: .5rem;
       padding: .6rem;
-      display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
+      justify-items: center;
       cursor: pointer;
       transition: background-color 0.3s ease;
 

@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { Router } from '@angular/router';
 import { SchaffITStore } from '../../stores/schaffIT.store';
-import { Category } from '../../interfaces/category.interface';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
 
 @Component({
@@ -20,7 +19,6 @@ export class CategorySelectPageComponent {
   public schaffIT_store = inject(SchaffITStore);
   private router: Router = inject(Router);
 
-  public categories: Category[] = this.schaffIT_store.categories();
   public selected_category_id: number|null = null;
 
   set_selected_category_id(category_id: number) {

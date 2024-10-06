@@ -28,15 +28,21 @@ export class CountSelectPageComponent {
     this.selected_count = count;
   }
 
-  submit() {
+  async submit() {
     if (this.selected_count) {
       this.schaffIT_store.set_selected_amount_and_load_questions(this.selected_count);
-      this.load_questions();
+      await this.load_questions();
       this.router.navigate(['question-page']).then();
     }
   }
 
-  load_questions() {
+  async load_questions() {
+    await this.sleep(1000);
     this.schaffIT_store.load_questions();
+  }
+
+  async sleep(ms: number): Promise<void> {
+    return new Promise(
+      (sleep) => setTimeout(sleep, ms));
   }
 }

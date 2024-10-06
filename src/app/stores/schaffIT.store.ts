@@ -77,24 +77,14 @@ export const SchaffITStore = signalStore(
         this.load_questions();
       },
 
-      get_first_question_of_array(waited = false) {
+      get_first_question_of_array() {
         if (store.questions().length > 0) {
           return store.questions()[0];
         } else if (store.all_answered()) {
           router.navigate(['score']);
         } else {
-          if (!waited) {
-            await this.sleep(800);
-            this.get_first_question_of_array(true);
-          } else {
-            router.navigate(['category-select']).then(() => confirm('Es muss erst eine Kategorie und die Anzahl der Fragen ausgewählt werden.'));
-          }
+          router.navigate(['category-select']).then(() => confirm('Es muss erst eine Kategorie und die Anzahl der Fragen ausgewählt werden.'));
         }
-      },
-
-      async sleep(ms: number): Promise<void> {
-        return new Promise(
-          (sleep) => setTimeout(sleep, ms));
       },
 
       set_selected_answer_id(answer_id: number) {

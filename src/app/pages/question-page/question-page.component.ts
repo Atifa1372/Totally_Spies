@@ -1,7 +1,6 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {SchaffITStore} from "../../stores/schaffIT.store";
 import {HeaderComponent} from "../../components/header/header.component";
-import {Question} from "../../interfaces/question.interface";
 import {Router} from "@angular/router";
 import {NgForOf} from "@angular/common";
 import {Answer} from "../../interfaces/answer.interface";
@@ -19,8 +18,6 @@ import {Answer} from "../../interfaces/answer.interface";
 export class QuestionPageComponent implements OnInit, OnDestroy {
   private router: Router = inject(Router);
   public schaffIT_store = inject(SchaffITStore);
-
-  public question: Question = this.schaffIT_store.get_first_question_of_array();
   public selected_answer: any = null;
 
   ngOnInit() {

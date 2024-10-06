@@ -12,7 +12,7 @@ export class StartPageComponent implements OnInit{
   private router: Router = inject(Router);
 
   async ngOnInit(): Promise<void> {
-    await this.sleep(2500);
+    await this.sleep(2000);
     this.redirect_to_category_select_page();
   }
 
