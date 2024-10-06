@@ -10,7 +10,8 @@ Wir haben das Angular-Framework verwendet, um die Benutzeroberfläche zu entwick
 ### Backend: 
 Für die Logik hinter der App haben wir C# in Visual Studio genutzt. Hier haben wir die Programmierung des Servers und die Kommunikation mit der Datenbank umgesetzt.
 
-### Datenbank: Wir haben MySQL als Datenbank verwendet, um die Tabellen Question, Answer und Category zu speichern.
+### Datenbank: 
+Wir haben MySQL als Datenbank verwendet, um die Tabellen Question, Answer und Category zu speichern.
 
 ## Unsere Aufgaben im Projekt
 
