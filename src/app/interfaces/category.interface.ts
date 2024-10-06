@@ -1,5 +1,5 @@
 export interface Category {
-  Id: number,
-  Name: string
-  PicturePath: string
+  id: number,
+  name: string
+  picturePath: string
 }

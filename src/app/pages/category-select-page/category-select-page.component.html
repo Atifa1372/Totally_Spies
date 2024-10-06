@@ -4,9 +4,9 @@
   <p>Was willst du heute lernen?</p>
 
   <div class="subjects">
-    <div *ngFor="let category of categories" class="subject" (click)="set_selected_category_id(category.Id)" [class.selected]="selected_category_id === category.Id">
-      <img [ngSrc]="category.PicturePath" [alt]="category.Name" width="40" height="40">
-      <span>{{category.Name}}</span>
+    <div *ngFor="let category of schaffIT_store.categories()" class="subject" (click)="set_selected_category_id(category.id)" [class.selected]="selected_category_id === category.id">
+      <img [ngSrc]="category.picturePath" [alt]="category.name" width="40" height="40">
+      <span>{{category.name}}</span>
     </div>
     <div class="subject" (click)="set_selected_category_id(0)" [class.selected]="selected_category_id === 0">
       <span>Gemischt</span>

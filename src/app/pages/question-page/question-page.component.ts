@@ -33,7 +33,7 @@ export class QuestionPageComponent implements OnInit, OnDestroy {
 
   select_answer(answer: Answer) {
     this.selected_answer = answer;
-    this.schaffIT_store.set_selected_answer_id(answer.Id);
+    this.schaffIT_store.set_selected_answer_id(answer.id);
   }
 
   submit() {

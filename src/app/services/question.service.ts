@@ -12,13 +12,13 @@ export class QuestionService {
 
   getQuestionsByAmountAndCategoryId(amount_of_questions: number, category_id: number): Observable<any> {
     return this.http.get(
-      `${this.api_url}/api/SchaffIT/questions/random?categoryId=${category_id}&count=${amount_of_questions}`
+      `${this.api_url}/api/ShaffIT/questions/random?categoryId=${category_id}&count=${amount_of_questions}`
     )
   }
 
   getQuestionsByAmount(amount_of_questions: number): Observable<any> {
     return this.http.get(
-      `${this.api_url}/api/SchaffIT/questions/random/all?count=${amount_of_questions}`
+      `${this.api_url}/api/shaffIT/questions/random/all?count=${amount_of_questions}`
     )
   }
 }

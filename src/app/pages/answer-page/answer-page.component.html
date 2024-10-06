@@ -6,13 +6,13 @@
   </div>
 
   <div class="question">
-    {{question.Text}}
+    {{question.text}}
   </div>
 
   <div class="answers">
-    <div class="answer" *ngFor="let answer of question.Answers">
-      <button [class]="answer.IsTrue ? 'answer-button true' : selected_answer_id == answer.Id && !answer.IsTrue ? 'answer-button false' : 'answer-button'" [disabled]="true">
-        {{answer.Text}}
+    <div class="answer" *ngFor="let answer of question.answers">
+      <button [class]="answer.isTrue ? 'answer-button true' : selected_answer_id == answer.id && !answer.isTrue ? 'answer-button false' : 'answer-button'" [disabled]="true">
+        {{answer.text}}
       </button>
     </div>
   </div>
