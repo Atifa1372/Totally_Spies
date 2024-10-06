@@ -111,8 +111,6 @@ export const SchaffITStore = signalStore(
       increment_amount_of_correct_answers() {
         const amount = store.amount_of_correct_answers()+1;
         patchState(store, {amount_of_correct_answers: amount});
-        console.log(amount);
-        console.log(store.amount_of_correct_answers());
       },
 
       start_timer() {
