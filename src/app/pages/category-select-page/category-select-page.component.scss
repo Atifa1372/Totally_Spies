@@ -2,11 +2,6 @@
   display: grid;
   background: #315E9A;
 
-  p {
-    color: #003285;
-    text-align: center;
-  }
-
   .subjects {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -22,7 +22,7 @@ export class ScorePageComponent implements OnInit {
   public amount_of_questions: number = this.schaffIT_store.selected_amount_of_questions();
   public emoji: string = ''
   public message: string = '';
-  //time: number=10;
+  public time: string = this.schaffIT_store.timer();
 
   ngOnInit() {
     if (!this.schaffIT_store.all_answered()) {

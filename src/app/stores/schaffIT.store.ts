@@ -15,6 +15,9 @@ type SchaffITStore = {
   question_count: number,
   amount_of_correct_answers: number,
   all_answered: boolean
+  time: number,
+  timer: string,
+  interval: any
 }
 const initialState: SchaffITStore = {
   questions: [] as Question[],
@@ -25,6 +28,9 @@ const initialState: SchaffITStore = {
   question_count: 1,
   amount_of_correct_answers: 0,
   all_answered: false,
+  time: 0,
+  timer: '00:00',
+  interval: null,
 };
 
 export const SchaffITStore = signalStore(
@@ -167,6 +173,31 @@ export const SchaffITStore = signalStore(
       increment_amount_of_correct_answers() {
         let amount = store.amount_of_correct_answers()+1;
         patchState(store, {amount_of_correct_answers: amount});
+      },
+
+      start_timer() {
+        this.pause_timer();
+        store.interval = setInterval(() => {
+          let time = store.time() + 1;
+          patchState(store, {time: time})
+          patchState(store, {timer: this.transform(time)})
+        }, 1000);
+      },
+
+      transform(value: number): string {
+        const minutes: number = Math.floor(value / 60);
+        const seconds: number = value - minutes * 60;
+        return this.pad(minutes, 2) + ':' + this.pad(seconds,2)
+      },
+
+      pad(num: number, size: number): string {
+        let s = num + "";
+        while (s.length < size) s = "0" + s;
+        return s;
+      },
+
+      pause_timer() {
+        clearInterval(store.interval);
       },
 
       reset_store() {

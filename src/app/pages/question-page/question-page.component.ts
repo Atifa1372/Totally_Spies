@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {SchaffITStore} from "../../stores/schaffIT.store";
 import {HeaderComponent} from "../../components/header/header.component";
 import {Question} from "../../interfaces/question.interface";
@@ -16,12 +16,20 @@ import {Answer} from "../../interfaces/answer.interface";
   templateUrl: './question-page.component.html',
   styleUrl: './question-page.component.scss'
 })
-export class QuestionPageComponent {
+export class QuestionPageComponent implements OnInit, OnDestroy {
   private router: Router = inject(Router);
   public schaffIT_store = inject(SchaffITStore);
 
   public question: Question = this.schaffIT_store.get_first_question_of_array();
   public selected_answer: any = null;
+
+  ngOnInit() {
+    this.schaffIT_store.start_timer();
+  }
+
+  ngOnDestroy() {
+    this.schaffIT_store.pause_timer();
+  }
 
   select_answer(answer: Answer) {
     this.selected_answer = answer;
