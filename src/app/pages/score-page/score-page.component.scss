@@ -2,10 +2,14 @@
   display: grid;
   gap: 1rem;
   justify-content: center;
-
+  justify-items: center;
   background: white;
   min-height: 100vh;
   min-width: 100vw;
+}
+
+app-header {
+  width: 98vw;
 }
 
 .score-page {
@@ -31,7 +35,7 @@
   }
 
   button {
-    width: 80vw;
+    min-width: 0;
+    max-width: 250px;
   }
-
 }
