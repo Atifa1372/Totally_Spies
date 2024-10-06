@@ -1,8 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 body {
+  display: grid;
+  min-width: 100vw;
   min-height: 100vh;
   overflow-x: auto !important;
   margin: 0;
+  padding: 0;
+  background: var(--color-2);
+  justify-content: center;
+
+
+  .content {
+    display: grid;
+    gap: 2rem;
+    justify-content: center;
+
+    border-radius: 2rem;
+    padding: 2rem 1rem;
+    background: white;
+  }
 }
 
 :root {
@@ -24,6 +40,7 @@ body {
   }
   p {
     font-size: 1.2rem;
+    text-align: center;
     color: #315E9A;
   }
 

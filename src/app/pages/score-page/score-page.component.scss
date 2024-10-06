@@ -1,24 +1,36 @@
+:host {
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+
+  background: white;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
 .score-page {
   display: grid;
   gap: .8rem;
   text-align: center;
-  margin-top: 5rem;
   justify-content: center;
   justify-items: center;
-}
+  align-items: flex-start;
+  padding-bottom: 5rem;
 
-.logo {
-  width: 100px;
-}
+  .logo {
+    width: 100px;
+  }
 
-.emoji {
-  font-size: 70px;
-}
+  .emoji {
+    font-size: 70px;
+  }
 
-img{
-  size: 5cm;
-}
+  img{
+    size: 5cm;
+  }
 
-button {
-  width: 80vw;
+  button {
+    width: 80vw;
+  }
+
 }

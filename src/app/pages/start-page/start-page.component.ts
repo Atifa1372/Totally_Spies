@@ -13,8 +13,7 @@ export class StartPageComponent implements OnInit{
 
   async ngOnInit(): Promise<void> {
     await this.sleep(2500);
-    //this.redirect_to_score_page(); // habe geändert, für die Aänerung von score page zu sehen
-    this.redirect_to_category_select_page();
+    //this.redirect_to_category_select_page();
   }
 
   async sleep(ms: number): Promise<void> {
