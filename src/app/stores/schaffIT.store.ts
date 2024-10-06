@@ -44,7 +44,7 @@ export const SchaffITStore = signalStore(
 
     return {
       load_questions() {
-        /*if (store.selected_category_id() && store.selected_amount_of_questions() > 0) {
+        if (store.selected_category_id() && store.selected_amount_of_questions() > 0) {
           if (store.selected_category_id() === 0) {
             let subscription = question_service.getQuestionsByAmount(store.selected_amount_of_questions()).subscribe(questions => {
               patchState(store, {questions: questions});
@@ -58,76 +58,14 @@ export const SchaffITStore = signalStore(
           }
         } else {
           router.navigate(['category-select']).then(() => confirm('Es muss erst eine Kategorie und die Anzahl der Fragen ausgewählt werden.'))
-        }*/
-
-        let questions = [
-          {
-            Id: 1,
-            Text: 'Das Bild zeigt alle Datenwege zwischen diesen Servern. STORE-1 und STORE-2 dienen der Datensicherheit. PORT-1 und PORT-2 dienen dem Server-Zugang. Die Zugangsserver speichern keine Daten.\n' + '\n' + 'Welche Aussage ist falsch?',
-            Answers: [
-              {
-                Id: 1,
-                Text: 'Falls PORT-1 und PORT-2 zerstört werden, sind alle Daten der Claudianer vernichtet.',
-                IsTrue: true
-              },
-              {
-                Id: 2,
-                Text: 'Falls PORT-1 und PORT-2 zerstört werden, sind alle Daten der Claudianer unzugänglich.',
-                IsTrue: false
-              },
-              {
-                Id: 3,
-                Text: 'Falls STORE-1 und STORE-2 zerstört werden, sind alle Daten der Claudianer vernichtet.',
-                IsTrue: false
-              }
-            ],
-            Category: {
-              Id: 1,
-              Name: 'Netzwerk'
-            }
-          },
-          {
-            Id: 2,
-            Text: 'Ein Handwerker steht in einem Baumarkt vor einem Regal mit Schrauben. Er hat die Aufgabe, eine Schraube mit einer vorgegebenen Länge auszuwählen. Glücklicherweise sind die Schrauben im Regal von links nach rechts der Länge nach sortiert. Was ist die Lösung?',
-            Answers: [
-              {
-                Id: 1,
-                Text: 'f(n) = log2 (n) + 1',
-                IsTrue: false
-              },
-              {
-                Id: 2,
-                Text: 'f(n) = 2n² + 1',
-                IsTrue: false
-              },
-              {
-                Id: 3,
-                Text: 'f(n) = √n + 1',
-                IsTrue: true
-              }
-            ],
-            Category: {
-              Id: 1,
-              Name: 'Netzwerk'
-            }
-          },
-        ];
-        patchState(store, {questions: questions});
+        }
       },
 
       load_categories() {
-       /* let subscription = category_service.getCategories().subscribe(categories => {
+        let subscription = category_service.getCategories().subscribe(categories => {
           patchState(store, {categories: categories});
           subscription.unsubscribe();
-        })*/
-
-        let categories = [
-          {Id: 1, Name: 'BfK-S', PicturePath: '/bfkS.png'},
-          {Id: 2, Name: 'BfK-B', PicturePath: '/bfkB.png'},
-          {Id: 3, Name: 'BfK-I', PicturePath: '/bfkI.png'},
-          {Id: 4, Name: 'Wirtschaft', PicturePath: '/wi.png'},
-        ];
-        patchState(store, {categories: categories});
+        })
       },
 
       set_selected_category(selected_category: number) {
