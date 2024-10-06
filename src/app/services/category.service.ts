@@ -12,7 +12,7 @@ export class CategoryService {
 
   getCategories(): Observable<any> {
     return this.http.get(
-      `${this.api_url}/api/SchaffIT/categories`
+      `${this.api_url}/api/ShaffIT/categories`
     )
   }
 }

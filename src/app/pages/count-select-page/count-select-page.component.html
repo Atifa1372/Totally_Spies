@@ -4,31 +4,10 @@
   <p>Wie viele Fragen magst du lernen?</p>
 
   <div class="questions">
-    <div class="question-option" 
-        (click)="select_count()">
-      <span>10</span><br />
-      <small>Questions</small>
+    <div *ngFor="let count of counts" class="question-option" (click)="select_count(count)" [class.selected]="selected_count == count">
+      <span>{{count}}</span>
     </div>
-
-    <div class="question-option" 
-        (click)="select_count()">
-      <span>15</span><br />
-      <small>Questions</small>
-    </div>
-
-    <div class="question-option" 
-        (click)="select_count()">
-      <span>20</span><br />
-      <small>Questions</small>
-    </div>
-
-    <div class="question-option" 
-        (click)="select_count()">
-      <span>30</span><br />
-      <small>Questions</small>
-    </div>
-    
   </div>
 
-  <button (click)="select_count()">Start</button>
+  <button (click)="submit()">Start</button>
 </div>

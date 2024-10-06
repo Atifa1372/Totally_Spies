@@ -16,7 +16,7 @@
 
   <h1>{{message}}</h1>
 
-  <p>Du hast {{score}} von {{amount_of_questions}} Fragen richtig beantwortet.</p> <!-- in {{time}} Minuten. -->
+  <p>Du hast {{schaffIT_store.amount_of_correct_answers()}} von {{schaffIT_store.selected_amount_of_questions()}} Fragen in {{this.schaffIT_store.timer()}} Minuten richtig beantwortet.</p>
 
   <button (click)="backToQuiz()">Neues Spiel</button>
 </div>

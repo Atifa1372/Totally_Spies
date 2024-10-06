@@ -12,8 +12,7 @@ export class StartPageComponent implements OnInit{
   private router: Router = inject(Router);
 
   async ngOnInit(): Promise<void> {
-    await this.sleep(2500);
-    //this.redirect_to_score_page(); // habe geändert, für die Aänerung von score page zu sehen
+    await this.sleep(2000);
     this.redirect_to_category_select_page();
   }
 
@@ -22,11 +21,6 @@ export class StartPageComponent implements OnInit{
       (sleep) => setTimeout(sleep, ms));
   }
   redirect_to_category_select_page() {
-    this.router.navigate(['category-select']);
+    this.router.navigate(['category-select']).then();
   }
-
-
-  /*redirect_to_score_page() {  // habe geändert
-    this.router.navigate(['score']);  // Navigiere zu /score
-  }*/
 }

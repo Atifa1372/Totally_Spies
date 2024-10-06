@@ -1,14 +1,22 @@
 <app-header></app-header>
 <div class="content">
+  <div class="time-and-count">
+    <p>Frage {{schaffIT_store.question_count()}}</p>
+    <p>{{schaffIT_store.timer()}}</p>
+  </div>
+
   <div class="question">
     {{question.text}}
   </div>
+
   <div class="answers">
     <div class="answer" *ngFor="let answer of question.answers">
-      <button [class]="answer.is_true ? 'answer-button true' : selected_answer_id == answer.id && !answer.is_true ? 'answer-button false' : 'answer-button'" [disabled]="true">
+      <button [class]="answer.isTrue ? 'answer-button true' : selected_answer_id == answer.id && !answer.isTrue ? 'answer-button false' : 'answer-button'" [disabled]="true">
         {{answer.text}}
       </button>
     </div>
   </div>
-  <button (click)="finish_question()">Weiter</button>
+
+  <button *ngIf="last_question" (click)="finish_question()">Quiz beenden</button>
+  <button *ngIf="!last_question" (click)="finish_question()">Nächste Frage</button>
 </div>

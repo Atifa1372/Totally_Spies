@@ -15,14 +15,13 @@ import {Router} from "@angular/router";
   styleUrl: './score-page.component.scss'
 })
 export class ScorePageComponent implements OnInit {
-  private schaffIT_store = inject(SchaffITStore);
+  public schaffIT_store = inject(SchaffITStore);
   private router: Router = inject(Router);
 
   public score: number = this.schaffIT_store.amount_of_correct_answers();
   public amount_of_questions: number = this.schaffIT_store.selected_amount_of_questions();
   public emoji: string = ''
   public message: string = '';
-  //time: number=10;
 
   ngOnInit() {
     if (!this.schaffIT_store.all_answered()) {
@@ -47,6 +46,7 @@ export class ScorePageComponent implements OnInit {
 
 
   backToQuiz() {
+    this.schaffIT_store.reset_store();
     this.router.navigate(['category-select']).then();
   }
 }

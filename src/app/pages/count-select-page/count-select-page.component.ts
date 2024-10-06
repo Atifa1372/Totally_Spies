@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from "../../components/header/header.component";
 import {SchaffITStore} from "../../stores/schaffIT.store";
 import { CommonModule } from '@angular/common';
@@ -22,23 +22,27 @@ export class CountSelectPageComponent {
   private schaffIT_store = inject(SchaffITStore);
 
   public counts: number[] = [5, 10, 15, 20];
+  public selected_count: number|null = null;
 
+  select_count(count: number) {
+    this.selected_count = count;
+  }
 
-  public count_form: FormGroup = new FormGroup<any>({
-    count: new FormControl(null, Validators.required)
-    
-  })
-
-  select_count() {
-    if (this.count_form.valid) {
-      this.schaffIT_store.set_selected_amount_and_load_questions(this.count_form.get('count')?.value);
-      //this.schaffIT_store.set_selected_amount_and_load_questions(this.count_form.get('count')?.value);
+  async submit() {
+    if (this.selected_count) {
+      this.schaffIT_store.set_selected_amount_and_load_questions(this.selected_count);
+      await this.load_questions();
       this.router.navigate(['question-page']).then();
     }
   }
- 
-  
-  load_questions() {
-    //this.schaffIT_store.load_questions_by_amount_and_categories();
+
+  async load_questions() {
+    await this.sleep(1000);
+    this.schaffIT_store.load_questions();
+  }
+
+  async sleep(ms: number): Promise<void> {
+    return new Promise(
+      (sleep) => setTimeout(sleep, ms));
   }
 }

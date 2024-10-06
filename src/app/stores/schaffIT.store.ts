@@ -12,8 +12,12 @@ type SchaffITStore = {
   selected_category_id: number|null,
   selected_amount_of_questions: number,
   selected_answer_id: number|null,
+  question_count: number,
   amount_of_correct_answers: number,
   all_answered: boolean
+  time: number,
+  timer: string,
+  interval: any
 }
 const initialState: SchaffITStore = {
   questions: [] as Question[],
@@ -21,8 +25,12 @@ const initialState: SchaffITStore = {
   selected_category_id: null,
   selected_amount_of_questions: 0,
   selected_answer_id: null,
+  question_count: 1,
   amount_of_correct_answers: 0,
   all_answered: false,
+  time: 0,
+  timer: '00:00',
+  interval: null,
 };
 
 export const SchaffITStore = signalStore(
@@ -36,7 +44,7 @@ export const SchaffITStore = signalStore(
 
     return {
       load_questions() {
-        /*if (store.selected_category_id() && store.selected_amount_of_questions() > 0) {
+        if ((store.selected_category_id() || (store.selected_category_id() === 0) ) && store.selected_amount_of_questions() > 0) {
           if (store.selected_category_id() === 0) {
             let subscription = question_service.getQuestionsByAmount(store.selected_amount_of_questions()).subscribe(questions => {
               patchState(store, {questions: questions});
@@ -50,76 +58,14 @@ export const SchaffITStore = signalStore(
           }
         } else {
           router.navigate(['category-select']).then(() => confirm('Es muss erst eine Kategorie und die Anzahl der Fragen ausgewählt werden.'))
-        }*/
-
-        let questions = [
-          {
-            id: 1,
-            text: 'Das Bild zeigt alle Datenwege zwischen diesen Servern. STORE-1 und STORE-2 dienen der Datensicherheit. PORT-1 und PORT-2 dienen dem Server-Zugang. Die Zugangsserver speichern keine Daten.\n' + '\n' + 'Welche Aussage ist falsch?',
-            answers: [
-              {
-                id: 1,
-                text: 'Falls PORT-1 und PORT-2 zerstört werden, sind alle Daten der Claudianer vernichtet.',
-                is_true: true
-              },
-              {
-                id: 2,
-                text: 'Falls PORT-1 und PORT-2 zerstört werden, sind alle Daten der Claudianer unzugänglich.',
-                is_true: false
-              },
-              {
-                id: 3,
-                text: 'Falls STORE-1 und STORE-2 zerstört werden, sind alle Daten der Claudianer vernichtet.',
-                is_true: false
-              }
-            ],
-            category: {
-              id: 1,
-              name: 'Netzwerk'
-            }
-          },
-          {
-            id: 2,
-            text: 'Ein Handwerker steht in einem Baumarkt vor einem Regal mit Schrauben. Er hat die Aufgabe, eine Schraube mit einer vorgegebenen Länge auszuwählen. Glücklicherweise sind die Schrauben im Regal von links nach rechts der Länge nach sortiert. Was ist die Lösung?',
-            answers: [
-              {
-                id: 1,
-                text: 'f(n) = log2 (n) + 1',
-                is_true: false
-              },
-              {
-                id: 2,
-                text: 'f(n) = 2n² + 1',
-                is_true: false
-              },
-              {
-                id: 3,
-                text: 'f(n) = √n + 1',
-                is_true: true
-              }
-            ],
-            category: {
-              id: 1,
-              name: 'Netzwerk'
-            }
-          },
-        ];
-        patchState(store, {questions: questions});
+        }
       },
 
       load_categories() {
-       /* let subscription = category_service.getCategories().subscribe(categories => {
+        let subscription = category_service.getCategories().subscribe(categories => {
           patchState(store, {categories: categories});
           subscription.unsubscribe();
-        })*/
-
-        let categories = [
-          {id: 1, name: 'BfK-S'},
-          {id: 2, name: 'BfK-B'},
-          {id: 3, name: 'BfK-I'},
-          {id: 4, name: 'Wirtschaft'},
-        ];
-        patchState(store, {categories: categories});
+        })
       },
 
       set_selected_category(selected_category: number) {
@@ -131,7 +77,7 @@ export const SchaffITStore = signalStore(
         this.load_questions();
       },
 
-      get_first_question() {
+      get_first_question_of_array() {
         if (store.questions().length > 0) {
           return store.questions()[0];
         } else if (store.all_answered()) {
@@ -145,19 +91,57 @@ export const SchaffITStore = signalStore(
         patchState(store, {selected_answer_id: answer_id})
       },
 
-      delete_first_question() {
+      delete_first_question_of_array() {
         const questions = store.questions();
         questions.splice(0, 1);
         patchState(store, {questions: questions})
+
+        this.increment_question_count();
 
         if (questions.length === 0) {
           patchState(store, {all_answered: true})
         }
       },
 
+      increment_question_count() {
+        const count = store.question_count()
+        patchState(store, {question_count: count+1});
+      },
+
       increment_amount_of_correct_answers() {
-        let amount = store.amount_of_correct_answers()+1;
+        const amount = store.amount_of_correct_answers()+1;
         patchState(store, {amount_of_correct_answers: amount});
+      },
+
+      start_timer() {
+        this.pause_timer();
+        store.interval = setInterval(() => {
+          let time = store.time() + 1;
+          patchState(store, {time: time})
+          patchState(store, {timer: this.transform(time)})
+        }, 1000);
+      },
+
+      transform(value: number): string {
+        const minutes: number = Math.floor(value / 60);
+        const seconds: number = value - minutes * 60;
+        return this.pad(minutes, 2) + ':' + this.pad(seconds,2)
+      },
+
+      pad(num: number, size: number): string {
+        let s = num + "";
+        while (s.length < size) s = "0" + s;
+        return s;
+      },
+
+      pause_timer() {
+        clearInterval(store.interval);
+      },
+
+      reset_store() {
+        const categories = store.categories();
+        patchState(store, initialState);
+        patchState(store, {categories: categories})
       }
     }
   }),
